@@ -58,6 +58,8 @@ jobs:
 
     - name: Update feeds
       run: cd openwrt && ./scripts/feeds update -a
+        rm -rf /home/runner/work/openwrt/openwrt/openwrt/build_dir/target-x86_64_musl/runc-1.0.0-rc8+91-3e425f80/
+      
 
     - name: Install feeds
       run: cd openwrt && ./scripts/feeds install -a
@@ -82,8 +84,7 @@ jobs:
         make download -j8
         find dl -size -1024c -exec ls -l {} \;
         find dl -size -1024c -exec rm -f {} \;
-        rm -rf /home/bang/lede/build_dir/target-x86_64_musl/runc-1.0.0-rc8+91-3e425f80/
-
+        
     - name: Compile the firmware
       id: compile
       run: |
